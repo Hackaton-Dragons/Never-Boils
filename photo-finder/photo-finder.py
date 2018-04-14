@@ -1,1 +1,0 @@
-#photo-finder.py
