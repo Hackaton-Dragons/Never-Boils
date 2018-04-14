@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mom Lied..</title>
+    <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
+    <div id="header">
+        <h1 id="titleDisplay"></h1>
+        <div id="radioForSafety">
+            <input type="radio" id="fun" onclick="headerMode(true)">
+            <label for="fun">Fun Mode</label>
+
+            <input type="radio" id="safe" onclick="headerMode(false)">
+            <label for="safe">Safe Mode</label>
+        </div>
+    </div>
+    <br/>
+    <div id="body">
+        <div id="photoDiv">
+            <img id="photoFound" src="">
+        </div>
+        <div id="refreshTime">
+            <p id="time"></p>
+        </div>
+    </div>
+    <div id="footer"></div>
 
 </body>
 </html>
