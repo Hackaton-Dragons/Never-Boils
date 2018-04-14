@@ -72,7 +72,7 @@ class FaceChecker:
 
 # Run if not included
 if __name__ == '__main__':
-    checker = FaceChecker("test_face.jpg")
+    checker = FaceChecker("images/test_face.jpg")
 
     result = checker.check()
     print(result)
