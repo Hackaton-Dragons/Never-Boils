@@ -1,19 +1,23 @@
-import pygame.camera
-import pygame.image
+import cv2
 
-class Camera:
-    def __init__(self, image_file="images/photo.png"):
-        pygame.camera.init()
+class WebCam:
+    def __init__(self, image_file):
         self.image_file = image_file
-        self.cam = pygame.camera.Camera(pygame.camera.list_cameras()[1])
-        self.start()
+
 
     def start(self):
-        self.cam.start()
+        pass
 
     def stop(self):
-        pygame.camera.quit()
+        pass
 
-    def get_image():
-        img = cam.get_image()
-        pygame.image.save(img, self.image_file)
+    def get_image(self):
+        print("taking picture")
+
+        self.cam = cv2.VideoCapture(1)
+        self.cam.set(cv2.CAP_PROP_FPS, 10)
+
+        ret, frame = self.cam.read()
+        cv2.imwrite(self.image_file, frame)
+
+        self.cam.release()

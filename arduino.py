@@ -6,18 +6,17 @@ arduino_port = 9600
 arduino = serial.Serial(arduino_location, arduino_port)
 
 def get_temp():
-    return arduino.read(5).decode()
+    raw = arduino.readline()
+    return float(raw.decode())
 
 def turn_relay_on():
     arduino.write('1'.encode())
+    print("relay on")
 
 def turn_relay_off():
     arduino.write('0'.encode())
+    print("relay off")
 
 # Run test code if invoked and not included
 if __name__ == '__main__':
-    for i in range(200):
-        turn_relay_on()
-        time.sleep(5)
-        turn_relay_off()
-        get_temp()
+    print(get_temp())

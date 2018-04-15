@@ -20,7 +20,6 @@ void setup(void)
  Serial.begin(9600); 
  //Serial.println("Dallas Temperature IC Control Library Demo"); 
  // Start up the library 
- sensors.begin(); 
  pinMode(LED_BUILTIN, OUTPUT);  //pin 13 on the uno. used for the relay
 } 
 void loop(void) 
@@ -30,12 +29,13 @@ void loop(void)
 /********************************************************************/
  sensors.requestTemperatures(); // Send the command to get temperature readings  
 /********************************************************************/
- Serial.print(sensors.getTempCByIndex(0)); // Why "byIndex"?  
+ Serial.println(sensors.getTempCByIndex(0)); // Why "byIndex"?  
    // You can have more than one DS18B20 on the same bus.  
    // 0 refers to the first IC on the wire
 
  if(Serial.available() > 0)
  {
+    sensors.begin(); 
     char incoming = Serial.read();   //may need to be chnaged to char
     switch(incoming)
     {
@@ -47,5 +47,5 @@ void loop(void)
       }
   }
    
-   delay(1000); 
+   delay(5000); 
 } 
