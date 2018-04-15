@@ -7,18 +7,28 @@ import face
 DELAY = 15
 IMAGE_FILE = "images/photo.png"
 
+HOLDING_TEMP = 90
+BOILING_TEMP = 100
+MAX_BOILING_TEMP = 110
+
 def control_loop(face_checker, camera, delay):
     camera.get_image()
     eye_contact = face_cheker.check()
 
-    print("eye contact={}".format(eye_contact)
+    print("eye contact={}".format(eye_contact))
 
     temp = readSerial.get_temp()
 
     if eye_contact:
-        arduino.turn_relay_off()
+        if temp < BOILING_TEMP:
+            arduino.turn_relay_on()
+        elif temp > MAX_BOILING_TEMP:
+            arduino.turn_relay_off()
     else:
-        arduino.turn_relay_on()
+        if temp > HOLDING_TEMP:
+            arduino.turn_relay_off()
+        else:
+            arduino.turn_relay_on()
 
     time.sleep(DELAY)
 
