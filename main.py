@@ -1,37 +1,38 @@
-# Modulates the temperature of the pot
-# import eye tracker
-
-import photo_finder.py as findMyPhoto
-import arduino.py as getTemp
-import face.py as face
 import time
 
-def checkEyeContact(eyeContact):
-    if eyeContact == True:
-        return True
-    else:
-        return False
+import camera
+import arduino 
+import face
 
-def setRelay(val):
-    #Output the value to the relay mod
-    pass
+DELAY = 15
+IMAGE_FILE = "images/photo.png"
+
+def control_loop(face_checker, camera, delay):
+    camera.get_image()
+    eye_contact = face_cheker.check()
+
+    print("eye contact={}".format(eye_contact)
+
+    temp = readSerial.get_temp()
+
+    if eye_contact:
+        arduino.turn_relay_off()
+    else:
+        arduino.turn_relay_on()
+
+    time.sleep(DELAY)
 
 def main():
-    run = True
-    while run:
-        time.sleep(15)
-        image = findMyPhoto.main()
-        checkHere = FaceChecker(image)
-        eyeContact = checkHere.check()
-        print(eyeContact)
-        modTemp = checkEyeContact(eyeContact)
-        temp = readSerial.getTemp()
-        val = bool
-        if modTemp == True:
-            val = True
-            setRelay(val)
-        else:
-            val = False
-            setRelay(val)
+    face_checker = FaceChecker(IMAGE_FILE, request_delay=DELAY)
+    camera = camera.Camera(IMAGE_FILE)
 
-main(True)
+    try:
+        while True:
+            control_loop(face_checker, camera, delay)
+    except KeyboardInterrupt:
+        print("stopping")
+
+    camera.stop()
+
+if __name__ == '__main__':
+    main()

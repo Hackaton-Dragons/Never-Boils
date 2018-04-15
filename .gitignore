@@ -7,4 +7,4 @@ gapi-key.json
 
 #pycharm
 .idea/
-patrick/.idea/*
+*.iml
