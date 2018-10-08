@@ -4,8 +4,8 @@ import camera
 import arduino 
 import face
 
-DELAY_SEGMENTS = 3
-DELAY = 3
+DELAY_SEGMENTS = 1
+DELAY = 1
 
 IMAGE_FILE = "images/photo.bmp"
 OLD_IMAGE_FILE = "images/old.bmp"
@@ -39,12 +39,14 @@ def control_loop(face_checker, cam, delay):
     delay_part = DELAY / DELAY_SEGMENTS
     accum_delay = 0
 
+    """
     for i in range(DELAY_SEGMENTS):
         accum_delay += delay_part
 
         print("sleeping for {} more seconds".format(int(DELAY - accum_delay)))
 
         time.sleep(delay_part)
+    """
 
 def main():
     face_checker = face.FaceChecker(IMAGE_FILE, OLD_IMAGE_FILE, request_delay=DELAY)

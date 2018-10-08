@@ -53,6 +53,7 @@ class FaceChecker:
             image = types.Image(content=content)
 
             # Make GAPI request
+            return False
             resp = self.client.face_detection(image=image)
 
         # Delete file

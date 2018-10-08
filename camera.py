@@ -14,7 +14,7 @@ class WebCam:
     def get_image(self):
         print("taking picture")
 
-        self.cam = cv2.VideoCapture(1)
+        self.cam = cv2.VideoCapture(0)
         self.cam.set(cv2.CAP_PROP_FPS, 10)
 
         ret, frame = self.cam.read()
